@@ -1,7 +1,6 @@
-# Project Title
+# Wordle Solver
 
 Team members:
 
-- Name1
-- Name2
-- Name3
+- Yiqing Li
+- Haoyu Liu
