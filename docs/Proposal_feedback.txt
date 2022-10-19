@@ -1,0 +1,22 @@
+Weak to fair proposal.
+
+On first glance, a Wordle application would appear to be too simple for a course
+project.  Reading the proposal more carefully, a Wordle solver is a little more
+challenging, but still might not be sufficient for a course project.
+
+I don't understand the statement "The computer will suggest a list (could be
+singleton) of words to guess next, then the user should indicate the actual word
+chosen and the result of the guess".  Why isn't the computer making a definitive
+guess, as would a human player?  Is the human an adversary (i.e., choosing the
+word that reveals the least information)?  Or is the computer an assistant for
+the human, suggesting possible guesses, but letting the human pick?
+
+Is there anything interesting going on with trimming the vocabulary?  Or is it
+really just a simple `filter` operation that judges each word with respect to
+the information available?
+
+Definitely think about how you will justify at the final that work that you did
+for the project is of sufficient scope and challenge for a course project.
+
+
+Score: 10/10
