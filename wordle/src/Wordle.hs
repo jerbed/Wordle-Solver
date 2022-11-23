@@ -27,7 +27,7 @@ respondToGuess guess answer = Response (zipWith convert green_spots (getLetters 
 
     convert :: Bool -> Char -> LetterResponse
     convert False the_letter
-      | the_letter `S.member` answer_letters = Yellow
+      | the_letter `Set.member` answer_letters = Yellow
       | otherwise = Gray
     convert True _ = Green
 
@@ -37,15 +37,15 @@ advanceState state word response = state <> new_state
     -- a new State reflecting only information in the Response
     new_state = State new_mapping
 
-    guess_with_response :: [Char, LetterResponse]
+    guess_with_response :: [(Char, LetterResponse)]
     guess_with_response = zip (getLetters word) (getResponses response)
 
-    new_mapping = V.ifoldl' go mempty guess_with_response
-      where
-        go :: M.Map Char LetterInformation -> Int -> (Char, LetterResponse) -> M.Map Char LetterInformation
-        go old_mapping _ (letter, Gray) = M.insert letter LetterNotInWord old_mapping
-        go old_mapping index (letter, Yellow) = M.insert letter (LetterNotInLocations (S.singleton index)) old_mapping
-        go old_mapping index (letter, Green) = M.insert letter (LetterNotInLocations (S.delete index (S.fromList allLocations))) old_mapping
+-- new_mapping = ... go mempty guess_with_response
+--   where
+--     go :: Map.Map Char LetterInfo -> Int -> (Char, LetterResponse) -> Map.Map Char LetterInfo
+--     go old_mapping _ (letter, Gray) = Map.insert letter LetterNotInWord old_mapping
+--     go old_mapping index (letter, Yellow) = Map.insert letter (LetterNotInLocations (Set.singleton index)) old_mapping
+--     go old_mapping index (letter, Green) = Map.insert letter (LetterNotInLocations (Set.delete index (Set.fromList allLocations))) old_mapping
 
 -- The state of the game; can be thought of as
 -- representing a human player's knowledge at a particular point
