@@ -1,0 +1,58 @@
+
+Checkpoint.md:
+ - project title and the names of the team members: NO(title)/YES(names)
+ - summary description of the overall goal of the project: YES
+ - summary of the progress made and lessons learned thus far: POOR/FAIR
+ - list any additional Haskell libraries required for the project: N/A
+ - briefly describe the structure of the code: FAIR
+
+I'm concerned about the amount of work accomplished at the Checkpoint
+and I remain concerned about the size/scope of the project.  This
+Checkpoint does not answer any of the questions/concerns raised in
+the Proposal feedback.
+
+It would definitely be much better to have the collection of words
+loaded from a configuration file, rather than definining a (large)
+static data structure.  You will find that the compile time of the
+Words.hs file is significant.
+
+It would probably be more efficient to explicitly update the set of
+possible words after each step, rather than compute it repeatedly from
+the available information.
+
+Plan to have a much more substantial Final.md file for the final
+project submission, with quite a bit more about how the project is
+organized, the work done for the project, and what was learned by
+undertaking the project.
+
+Be sure to review the final project grading rubric
+(https://www.cs.rit.edu/~mtf/teaching/20221/psh/project.html#final),
+especially the Style/Design and Effort/Accomplishment criteria.
+
+I would typically expect > 600 LOC for a solid project.
+
+At this stage, I'm afraid that this might be classified as an "easy"
+project for the Effort/Accomplishment rubric.
+
+Also, don't forget some kind of testing (Tasty, HUnit, QuickCheck) is
+expected in the final project submission.
+
+
+Score: 8/10
+
+############################################################
+
+$ cloc . --quiet --by-file --include-lang=Haskell
+
+github.com/AlDanial/cloc v 1.90  T=0.01 s (657.0 files/s, 20104.9 lines/s)
+-------------------------------------------------------------------------------------
+File                                   blank        comment           code
+-------------------------------------------------------------------------------------
+./wordle/src/Wordle.hs                    14             12             41
+./wordle/src/Main.hs                      11              7             22
+./wordle/src/TheGame.hs                    8              6             15
+./wordle/src/Words.hs                      4              4              7
+./wordle/Setup.hs                          0              0              2
+-------------------------------------------------------------------------------------
+SUM:                                      37             29             87
+-------------------------------------------------------------------------------------
