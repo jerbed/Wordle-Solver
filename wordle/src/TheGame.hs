@@ -18,8 +18,8 @@ type Response = [Color]
 -- every step, we have a Computer guess(word), and a human response
 type Step = (WordleWord, Response)
 
-instance Show Step where
-  show (word, response) = show word ++ show response
+-- instance Show Step where
+--   show (word, response) = show word ++ show response
 
 -- current game state is represented by a list of steps
 -- TODO: Maybe WordleWords could be contained in the GameState
