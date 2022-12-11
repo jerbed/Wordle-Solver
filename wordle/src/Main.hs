@@ -7,11 +7,6 @@ import Words (WordleWord, allowedWords, possibleAnswers)
 
 -- import TheGame
 
--- initialization, fileName: xxx.txt
--- TODO: We can get words from a .txt file, which makes maintenance and updateeasier
--- wordsFromTxt :: String -> IO [String]
--- wordsFromTxt fileName = fmap Text.lines (Text.readFile fileName)
-
 -- if an input word is 5-letter long
 validLength :: String -> Bool
 validLength x = length x == 5
@@ -34,21 +29,31 @@ playTheGame roundNum currState currAnsList =
     else do
       putStr "Begin round "
       print roundNum
-      putStrLn "Enter guess" -- !!! TODO: modify this so that word is suggested by the program instead
-      inputWord <- getLine
-      putStrLn "What was the response? For example, for [Gray, Gray, Yellow, Green, Gray], enter 00120"
-      inputResponse <- getLine
-      -- TODO:
-      if validInput inputWord
-        then do
-          let (newState, newAnsList) = updateAnsList currState inputWord inputResponse currAnsList
-          putStrLn "updated Answer list is (words outside of this list cannot be an answer, but can be guessed as long as it is in the allowedWords list"
-          print newAnsList
 
-          playTheGame (roundNum + 1) newState newAnsList
+      putStrLn "Suggested guess: (Please wait for calculation)"
+      print (calcBestWordSimplified currAnsList)
+      putStrLn "Enter your actual guess"
+      inputWord <- getLine
+
+      putStrLn "What was the response? For Gray, enter 0; Yellow, 1; Green, 2"
+      putStrLn "For example, for [Gray, Gray, Yellow, Green, Gray], enter 00120"
+      inputResponse <- getLine
+
+      if inputResponse == "22222"
+        then putStrLn "Win!"
         else do
-          putStrLn "Invalid input, please try again:"
-          playTheGame roundNum currState currAnsList
+          if validInput inputWord
+            then do
+              let (newState, newAnsList) = updateAnsList currState inputWord inputResponse currAnsList
+              putStrLn "updated Answer list is:"
+              print newAnsList
+
+              if null newAnsList
+                then putStrLn "Something went wrong, either answer not in list, or conflited information was provided"
+                else playTheGame (roundNum + 1) newState newAnsList
+            else do
+              putStrLn "Invalid input, please try again:"
+              playTheGame roundNum currState currAnsList
 
 main :: IO ()
 main = do
