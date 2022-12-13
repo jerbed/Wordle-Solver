@@ -2,6 +2,7 @@ module Main where
 
 import qualified Data.Map as Map
 import qualified Data.Text as Text
+import Entropy
 import Wordle
 import Words (WordleWord, allowedWords, possibleAnswers)
 
